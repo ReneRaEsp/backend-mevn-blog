@@ -4,7 +4,7 @@ const articuloSchema = new Schema({
 
     titulo: {type: String, maxlength:200},
     extracto: {type: String, maxlength: 250},
-    fecha: {type: Date},
+    fecha: {type: Date, default: Date.now},
     texto: {type: String},
     thumb: {type: String, maxlength: 50},
     
