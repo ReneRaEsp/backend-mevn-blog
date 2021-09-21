@@ -3,6 +3,8 @@ import morgan from 'morgan';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import router from './routes';
+import fileUpload from 'express-fileupload';
+
 
 mongoose.Promise = global.Promise;
 
@@ -24,9 +26,15 @@ app.set('port', process.env.PORT || 3000);
 app.use(morgan("dev"));
 app.use(cors());
 
+app.use( express.static('public'));
+
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(express.static(__dirname + "/public"));
+app.use(fileUpload({
+    useTempFiles : true,
+    tempFileDir: '/tmp/'
+}));
 
 app.use("/api", router);
 
