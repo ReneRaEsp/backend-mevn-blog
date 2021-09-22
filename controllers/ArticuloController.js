@@ -51,7 +51,7 @@ export default {
       console.log("req.files >>>", req.files); // eslint-disable-line
 
       sampleFile = req.files.file;
-      uploadPath = path.join(__dirname, '../uploads/' + sampleFile.name);
+      uploadPath = path.join(__dirname, '../public/img/' + sampleFile.name);
 
       console.log( 'path: ' + uploadPath);
       sampleFile.mv(uploadPath, function (err) {
