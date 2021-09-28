@@ -5,4 +5,6 @@ const router=routerx();
 
 router.use('/articulo', articuloRouter);
 
+router.use('/usuario', usuarioRouter);
+
 export default router;
