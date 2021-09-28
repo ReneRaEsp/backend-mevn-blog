@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs';
 import token from '../services/token';
 
 export default {
-	add:async (req,res,next)=>{
+	add: async (req,res,next)=>{
 		try {
 			req.body.password = await bcrypt.hash(req.body.password, 10);
 			const reg = await models.Usuario.create(req.body);
@@ -23,7 +23,7 @@ export default {
 				const match = await bcrypt.compare(req.body.password, user.password);
 				if (match){
 					const tokenReturn = await token.encode(user._id, user.rol, user.email);
-					res.status(200).jscon({user, tokenReturn});
+					res.status(200).json({user, tokenReturn});
 				} else {
 					res.status(404).send({
 						message: 'Password incorrecto'
@@ -38,6 +38,17 @@ export default {
 			res.status(500).send({
 				message: 'Ocurrio un error'
 			})
+			next(e);
+		}
+	},
+
+	list: async (req, res, next)=>{
+		try{
+
+		} catch(e){
+			res.status(500).send({
+				message: 'No'
+			});
 			next(e);
 		}
 	}
